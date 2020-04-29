@@ -61,12 +61,14 @@ objects:
     labels:
       app: sonarqube
     name: sonarqube
-spec:
-  tags:
-  - from:
-      kind: DockerImage
-      name: docker.io/sonarqube:lts
-    name: lts
+  spec:
+    tags:
+    - from:
+        kind: DockerImage
+        name: docker.io/sonarqube:lts
+      name: lts
+      referencePolicy:
+        type: Source
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
