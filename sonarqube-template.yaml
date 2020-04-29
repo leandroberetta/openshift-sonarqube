@@ -222,10 +222,16 @@ objects:
           volumeMounts:
           - mountPath: /var/lib/pgsql/data
             name: postgresql-data
+          - mountPath: /opt/sonarqube/conf/sonar.properties
+            name: sonar-config
+            subPath: sonar.properties
         volumes:
         - name: postgresql-data
           persistentVolumeClaim:
             claimName: postgresql-sonarqube-data
+        - configMap:
+            name: sonar-config
+          name: sonar-config
     triggers:
     - imageChangeParams:
         automatic: true
@@ -257,6 +263,12 @@ objects:
     resources:
       requests:
         storage: ${SONAR_VOLUME_CAPACITY}
+- apiVersion: v1
+  data:
+    sonar.properties: "sonar.log.level=INFO\r\n\r\nsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false"
+  kind: ConfigMap
+  metadata:
+    name: sonar-config
 parameters:
 - description: Password for SonarQube Server PostgreSQL backend
   displayName: SonarQube's PostgreSQL Password
