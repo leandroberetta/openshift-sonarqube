@@ -67,8 +67,6 @@ spec:
       kind: DockerImage
       name: docker.io/sonarqube:lts
     name: lts
-    referencePolicy:
-      type: Source
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
