@@ -2,7 +2,7 @@
 
 This repository contains a template for running a SonarQube 7.9 (LTS) with PostgreSQL persistence in OpenShift.
 
-# Usage
+# Usage
 
     oc new-project sonarqube
 
