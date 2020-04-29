@@ -138,10 +138,16 @@ objects:
           volumeMounts:
           - mountPath: /opt/sonarqube/data
             name: sonarqube-data
+          - mountPath: /opt/sonarqube/conf/sonar.properties
+            name: sonar-config
+            subPath: sonar.properties
         volumes:
         - name: sonarqube-data
           persistentVolumeClaim:
             claimName: sonarqube-data
+        - configMap:
+            name: sonar-config
+          name: sonar-config
     triggers:
     - type: ConfigChange
     - imageChangeParams:
@@ -222,16 +228,10 @@ objects:
           volumeMounts:
           - mountPath: /var/lib/pgsql/data
             name: postgresql-data
-          - mountPath: /opt/sonarqube/conf/sonar.properties
-            name: sonar-config
-            subPath: sonar.properties
         volumes:
         - name: postgresql-data
           persistentVolumeClaim:
             claimName: postgresql-sonarqube-data
-        - configMap:
-            name: sonar-config
-          name: sonar-config
     triggers:
     - imageChangeParams:
         automatic: true
