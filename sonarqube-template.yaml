@@ -8,6 +8,8 @@ objects:
   metadata:
     name: sonarqube
   spec:
+    triggers:
+      - type: ConfigChange
     output:
       to:
         kind: ImageStreamTag
