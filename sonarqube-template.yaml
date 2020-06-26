@@ -102,7 +102,7 @@ objects:
         - env:
           - name: SONARQUBE_JDBC_PASSWORD
             value: ${POSTGRESQL_PASSWORD}
-          - name: SONARQUEB_JDBC_URL
+          - name: SONARQUBE_JDBC_URL
             value: jdbc:postgresql://postgresql-sonarqube/sonar
           - name: SONARQUBE_JDBC_USERNAME
             value: sonar
